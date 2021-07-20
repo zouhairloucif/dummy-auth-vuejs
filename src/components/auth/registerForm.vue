@@ -1,5 +1,5 @@
 <template>
-  <b-container class="text-left">
+  <b-container class="text-left form-container my-5">
     <b-form @submit.prevent="onSubmit">
       <b-form-group label="Prénom:" label-for="Prenom">
         <b-form-input
@@ -55,18 +55,24 @@
       </b-form-group>
 
       
-      <b-form-group label="Telephone:" label-for="Telephone">
+      <b-form-group label="Téléphone:" label-for="Telephone">
         <b-form-input
           id="Telephone"
           v-model="form.telephone"
           type="text"
-          placeholder="Entrez votre Telephone"
+          placeholder="Entrez votre Téléphone"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-button class="mt-4" type="submit" variant="success" size="lg" pill block>S'inscrire</b-button>
-      <b-button type="button" variant="link" size="lg" pill block :to="{name: 'Login'}">Authentification</b-button>
+      <b-button class="mt-4" type="submit" variant="success" size="lg" pill block>
+        <b-icon icon="person-plus-fill"></b-icon>
+        <span class="ml-2">S'inscrire</span>
+      </b-button>
+      <b-button type="button" variant="link" size="lg" pill block :to="{name: 'Login'}">
+        <b-icon icon="box-arrow-in-right"></b-icon>
+        <span class="ml-2">Authentification</span>
+        </b-button>
     </b-form>
   </b-container>
 </template>
@@ -99,4 +105,7 @@ export default {
 </script>
 
 <style scoped>
+.form-container {
+  max-width: 800px;
+}
 </style>

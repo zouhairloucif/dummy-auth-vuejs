@@ -3,8 +3,6 @@ import router from "../../router";
 const state = () => ({
     users: [],
     user: null,
-    loginError: null,
-    registerError: null,
 })
 
 const getters = {
@@ -13,21 +11,31 @@ const getters = {
 
 const mutations = {
     LOGIN(state, payload) {
-        state.loginError = null;
         const user = state.users.find((user) => {
             return user.email === payload.email && user.password === payload.password;
         });
         if (!user) {
-            state.loginError = "Login ou mot de passe incorrect";
+            router.app.$bvToast.toast('Login ou mot de passe incorrect!', {
+                title: 'Un problème est servenue',
+                variant: 'danger',
+                toaster: 'b-toaster-bottom-right',
+                autoHideDelay: 3000,
+                solid: true
+            })
             return;
         }
         state.user = user;
     },
     REGISTER(state, payload) {
-        state.registerError = null;
         const user = state.users.find((user) => user.email === payload.email && user.password === payload.password);
         if (user) {
-            state.registerError = "Compte existe déjà !";
+            router.app.$bvToast.toast('Compte existe déjà!', {
+                title: 'Un problème est servenue',
+                variant: 'danger',
+                toaster: 'b-toaster-bottom-right',
+                autoHideDelay: 3000,
+                solid: true
+            })
             return;
         }
         state.users.push(payload);
